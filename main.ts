@@ -1,12 +1,12 @@
 import {URLs} from './mockData'
 import {IURL} from './Interface'
 
-const shortURL = ""
+let url = "..."
 
-def createShortURL(longURL:string):IURL {
-    return {
-
-    }
+function requestURL(shortURL: string): string {
+    return URLs[shortURL]
 }
 
-console.log(URLs.youTube)
+url = requestURL("youTube")
+
+console.log(url)
