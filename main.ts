@@ -1,12 +1,15 @@
+
 import {URLs} from './mockData'
-import {IURL} from './Interface'
+import {IURL, rl} from './Interface'
 
-let url = "..."
 
-function requestURL(shortURL: string): string {
-    return URLs[shortURL]
+
+function requestURL(URL: string): string {
+    return URLs[URL]
 }
 
-url = requestURL("youTube")
-
-console.log(url)
+rl.question('Please enter a short URL:', (URL: string) => {
+    const url = requestURL(URL);
+    console.log('returned url', url);
+    rl.close();
+});
