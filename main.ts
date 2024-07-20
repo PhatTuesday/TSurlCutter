@@ -1,15 +1,20 @@
 
-import {URLs} from './mockData'
-import {IURL, rl} from './Interface'
-
-
+import { URLs } from './mockData'
+import { IURL } from './interface'
 
 function requestURL(URL: string): string {
-    return URLs[URL]
+    const urlObject = URLs.find(url => url.shortURL === URL);
+    if (urlObject) {
+        console.log(urlObject.longURL)
+        return urlObject.longURL;
+    } else {
+        console.log("URL not found")
+        return "URL not found";
+    }
 }
 
-rl.question('Please enter a short URL:', (URL: string) => {
-    const url = requestURL(URL);
-    console.log('returned url', url);
-    rl.close();
-});
+const url = requestURL('amazon');
+
+async function main() {
+    const localDataStore = await dataStoreFactory
+}
