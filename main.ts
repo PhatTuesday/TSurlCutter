@@ -15,6 +15,6 @@ function requestURL(URL: string): string {
 
 const url = requestURL('amazon');
 
-async function main() {
-    const localDataStore = await dataStoreFactory
-}
+// async function main() {
+//     const localDataStore = await dataStoreFactory
+// }
