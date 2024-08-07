@@ -2,7 +2,7 @@
 import { URLs } from './mockData'
 import { IURL } from './interface'
 
-function requestURL(URL: string): string {
+export function requestURL(URL: string): string {
     const urlObject = URLs.find(url => url.shortURL === URL);
     if (urlObject) {
         console.log(urlObject.longURL)
