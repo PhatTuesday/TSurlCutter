@@ -13,7 +13,7 @@ function requestURL(URL: string): string {
     }
 }
 
-const url = requestURL('amazon');
+const url = requestURL('youtube');
 
 // async function main() {
 //     const localDataStore = await dataStoreFactory

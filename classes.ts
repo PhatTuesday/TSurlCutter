@@ -1,9 +1,9 @@
-import {IDataStore} from "./Interface";
+import {IDataStore, IURL} from "./Interface";
 import { DataStoreType} from "./dataStore";
 import { URLs } from "./mockData";
 
 export class DataStoreFactory {
-    static async MakeDataStore(type: DataStoreType): Promise<IDataStore> {
+    static async MakeDataStore(type: DataStoreType): Promise <IDataStore> {
         let dataStore: BaseDataStore;
         switch (type) {
             case DataStoreType.LOCAL:
@@ -12,9 +12,9 @@ export class DataStoreFactory {
             default:
                 throw new Error('Invalid data store type');
             case DataStoreType.MONGO:
-                return new MongoDataStore();
+                dataStore = new MongoDataStore();
             case DataStoreType.POSTGRESQL:
-                return new PostgreSQLDataStore();
+                dataStore = new PostgreSQLDataStore();
         }
         await dataStore.loadData();
         return dataStore;
@@ -22,7 +22,7 @@ export class DataStoreFactory {
 }
 
 abstract class BaseDataStore implements IDataStore {
-        protected urlPairs: IURLPair[];
+        protected urlPairs: IURL[];
 
         constructor() {
             this.urlPairs = [];
@@ -32,9 +32,9 @@ abstract class BaseDataStore implements IDataStore {
         abstract saveData(): Promise<void>;
 
         makeShortUrl(longUrl: string): string {
-            const existingPair = this.urlPairs.find(pair => pair.longUrl === longUrl);
+            const existingPair = this.urlPairs.find(pair => pair.longURL === longUrl);
             if (existingPair) {
-                return existingPair.shortUrl;
+                return existingPair.shortURL;
             }
             const shortUrl = this.generateShortUrl();
             this.urlPairs.push({ longUrl, shortUrl });
@@ -43,8 +43,8 @@ abstract class BaseDataStore implements IDataStore {
         }
 
         getLongUrl(shortUrl: string): string {
-            const pair = this.urlPairs.find(pair => pair.shortUrl === shortUrl);
-            return pair ? pair.longUrl : '';
+            const pair = this.urlPairs.find(pair => pair.shortURL === shortUrl);
+            return pair ? pair.longURL : '';
         }
 
         private generateShortUrl(): string {
@@ -54,7 +54,7 @@ abstract class BaseDataStore implements IDataStore {
 
     class LocalDataStore extends BaseDataStore {
         async loadData(): Promise<void> {
-            this.urlPairs = [mockData.URLs];
+            this.urlPairs = URLs;
         }
 
         async saveData(): Promise<void> {
