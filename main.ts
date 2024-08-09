@@ -1,6 +1,6 @@
 
 import { URLs } from './mockData'
-import { DataStoreFactory } from './classes'
+import { DataStoreFactory } from './class/dataStoreFactoryClass'
 import { DataStoreType } from './dataStore'
 
 //Way 1
@@ -41,4 +41,9 @@ async function main(URL: string) {
 }
 
 
-main("youtube");
+main("https://www.youtube.com/");
+
+
+//TODO: Show that I have so far
+//TODO: Do you want to work on the database
+//TODO:
