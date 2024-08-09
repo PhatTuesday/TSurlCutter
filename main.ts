@@ -29,9 +29,12 @@ import { DataStoreType } from './dataStore'
 // Way 3 This one will take what ever URL you give it and allow you to get the short URL or the long URL
 async function main(URL: string) {
     const localDataStore = await DataStoreFactory.MakeDataStore(DataStoreType.LOCAL)
-    const isShortURL = URLs.some(url => url.shortURL === URL);
+    const regex = /(https?:\/\/)? (www\.)? (\.com)? /;
+    const isShortURL = regex.test(URL);
+    // const isExistsShortURL = URLs.some(url => url.shortURL === URL);
+    console.log(isShortURL);
 
-    let outputURL;
+    let outputURL: any
     if (isShortURL) {
         outputURL = localDataStore.getLongURL(URL);
     } else {
@@ -41,7 +44,7 @@ async function main(URL: string) {
 }
 
 
-main("https://www.youtube.com/");
+main("www.ryan.com");
 
 
 //TODO: Show that I have so far
