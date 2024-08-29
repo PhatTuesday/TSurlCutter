@@ -1,5 +1,5 @@
 
-import sqlite3 from 'sqlite3';
+import { sqlite3 } from "/Users/i27241/node_modules/sqlite3/lib/sqlite3"
 import { DataStoreFactory } from './class/dataStoreFactoryClass'
 import { DataStoreType } from './dataStore'
 

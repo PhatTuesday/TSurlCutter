@@ -1,4 +1,3 @@
-//TODO: This is where I will create my data store factory class to be used elsewhere in the app
 import { DataStoreType } from "../dataStore";
 import { IDataStore } from "../interface";
 import { BaseDataStore, LocalDataStore, MongoDataStore, PostgreSQLDataStore } from "./classes";
